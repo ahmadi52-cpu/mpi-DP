@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MPI - Media dan Jaringan Telekomunikasi | SMKN 5 Kolaka Utara</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col justify-between selection:bg-indigo-500 selection:text-white">
+
+    <!-- Top Navigation Bar -->
+    <header class="bg-slate-800/80 backdrop-blur-md border-b border-slate-700 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-500 to-blue-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">
+                    <i data-lucide="wifi" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-base leading-tight text-white">MPI Media & Jaringan Telekomunikasi</h1>
+                    <p class="text-xs text-indigo-400 font-medium">SMK Negeri 5 Kolaka Utara • Kelas X (Fase E)</p>
+                </div>
+            </div>
+            <!-- Navigation Links -->
+            <nav class="hidden md:flex items-center gap-1 bg-slate-900/60 p-1.5 rounded-xl border border-slate-700/60">
+                <button onclick="switchTab('splash')" id="nav-splash" class="nav-btn px-4 py-2 rounded-lg text-xs font-semibold transition-all text-white bg-indigo-600 shadow-md">
+                    <i data-lucide="home" class="w-4 h-4 inline mr-1"></i> Beranda
+                </button>
+                <button onclick="switchTab('materi')" id="nav-materi" class="nav-btn px-4 py-2 rounded-lg text-xs font-semibold text-slate-400 hover:text-white hover:bg-slate-800 transition-all">
+                    <i data-lucide="book-open" class="w-4 h-4 inline mr-1"></i> Materi
+                </button>
+                <button onclick="switchTab('simulasi')" id="nav-simulasi" class="nav-btn px-4 py-2 rounded-lg text-xs font-semibold text-slate-400 hover:text-white hover:bg-slate-800 transition-all">
+                    <i data-lucide="sliders" class="w-4 h-4 inline mr-1"></i> Simulasi & Analisis
+                </button>
+                <button onclick="switchTab('kuis')" id="nav-kuis" class="nav-btn px-4 py-2 rounded-lg text-xs font-semibold text-slate-400 hover:text-white hover:bg-slate-800 transition-all">
+                    <i data-lucide="help-circle" class="w-4 h-4 inline mr-1"></i> Kuis Interaktif
+                </button>
+                <button onclick="switchTab('profil')" id="nav-profil" class="nav-btn px-4 py-2 rounded-lg text-xs font-semibold text-slate-400 hover:text-white hover:bg-slate-800 transition-all">
+                    <i data-lucide="user" class="w-4 h-4 inline mr-1"></i> Profil
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full">
+
+        <!-- TAB 1: SPLASH / BERANDA -->
+        <section id="tab-splash" class="tab-content block space-y-8">
+            <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-indigo-900 via-indigo-800 to-slate-900 p-8 md:p-12 border border-indigo-500/20 shadow-2xl">
+                <div class="relative z-10 max-w-3xl space-y-6">
+                    <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+                        <i data-lucide="sparkles" class="w-4 h-4"></i> Kurikulum Merdeka - Fase E
+                    </span>
+                    <h2 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight leading-tight">
+                        Multimedia Pembelajaran Interaktif (MPI)
+                    </h2>
+                    <p class="text-slate-300 text-sm md:text-base leading-relaxed">
+                        Selamat datang di aplikasi pembelajaran Dasar-Dasar Program Keahlian Teknik Jaringan Komputer dan Telekomunikasi. Modul ini dirancang khusus untuk siswa Kelas X SMK Negeri 5 Kolaka Utara untuk memahami prinsip dasar transmisi, layanan jaringan, serta analisis keamanan WLAN.
+                    </p>
+                    <div class="flex flex-wrap gap-4 pt-2">
+                        <button onclick="switchTab('materi')" class="px-6 py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-sm shadow-lg shadow-indigo-600/30 flex items-center gap-2 transition-all transform hover:-translate-y-0.5">
+                            Mulai Belajar Materi <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                        <button onclick="switchTab('simulasi')" class="px-6 py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-sm border border-slate-700 flex items-center gap-2 transition-all">
+                            Uji Simulasi Sinyal <i data-lucide="cpu" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="absolute -right-12 -bottom-12 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            </div>
+
+            <!-- CP / TP Grid -->
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/60 hover:border-indigo-500/40 transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center mb-4">
+                        <i data-lucide="target" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-white mb-2">Capaian Pembelajaran</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Memahami prinsip dasar sistem transmisi telekomunikasi, layanan jaringan (networking services), serta keamanan jaringan nirkabel (WLAN).
+                    </p>
+                </div>
+
+                <div class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/60 hover:border-indigo-500/40 transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center mb-4">
+                        <i data-lucide="brain-circuit" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-white mb-2">Berpikir Kritis</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Menganalisis dan memecahkan masalah (*troubleshooting*) kestabilan internet serta interferensi sinyal Wi-Fi di lingkungan sekolah.
+                    </p>
+                </div>
+
+                <div class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/60 hover:border-indigo-500/40 transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-4">
+                        <i data-lucide="check-circle-2" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-white mb-2">Evaluasi Mandiri</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Menguji pemahaman secara kuantitatif melalui 10 kuis interaktif dengan indikator nilai dan sertifikat kelulusan digital.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: MATERI -->
+        <section id="tab-materi" class="tab-content hidden space-y-6">
+            <div class="flex items-center justify-between border-b border-slate-700 pb-4">
+                <div>
+                    <h2 class="text-2xl font-bold text-white">Modul Materi Pembelajaran</h2>
+                    <p class="text-xs text-slate-400">Pilih sub-materi di bawah ini untuk mempelajari prinsip dasar telekomunikasi.</p>
+                </div>
+            </div>
+
+            <!-- Sub-materi Buttons -->
+            <div class="flex gap-3 overflow-x-auto pb-2">
+                <button onclick="switchSubMateri('transmisi')" id="btn-sub-transmisi" class="sub-materi-btn px-4 py-2.5 rounded-xl font-bold text-xs bg-indigo-600 text-white flex items-center gap-2 transition-all">
+                    <i data-lucide="cable" class="w-4 h-4"></i> Media Transmisi
+                </button>
+                <button onclick="switchSubMateri('services')" id="btn-sub-services" class="sub-materi-btn px-4 py-2.5 rounded-xl font-bold text-xs bg-slate-800 text-slate-400 hover:bg-slate-700 flex items-center gap-2 transition-all">
+                    <i data-lucide="server" class="w-4 h-4"></i> Layanan Jaringan
+                </button>
+                <button onclick="switchSubMateri('keamanan')" id="btn-sub-keamanan" class="sub-materi-btn px-4 py-2.5 rounded-xl font-bold text-xs bg-slate-800 text-slate-400 hover:bg-slate-700 flex items-center gap-2 transition-all">
+                    <i data-lucide="shield-check" class="w-4 h-4"></i> Keamanan WLAN
+                </button>
+            </div>
+
+            <!-- Content Sub-materi 1 -->
+            <div id="sub-materi-transmisi" class="sub-materi-content block space-y-6">
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700">
+                        <div class="text-indigo-400 mb-3"><i data-lucide="cable" class="w-8 h-8"></i></div>
+                        <h4 class="font-bold text-lg text-white mb-2">1. Tembaga (Kabel UTP)</h4>
+                        <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                            Menggunakan pulsa listrik untuk mentransmisikan data. Rentan terhadap Interferensi Elektromagnetik (EMI) dan memiliki keterbatasan jarak maksimum 100 meter.
+                        </p>
+                        <span class="px-2.5 py-1 rounded bg-indigo-950 text-indigo-400 text-[10px] font-semibold">Kecepatan: Hingga 1 Gbps</span>
+                    </div>
+
+                    <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700">
+                        <div class="text-blue-400 mb-3"><i data-lucide="zap" class="w-8 h-8"></i></div>
+                        <h4 class="font-bold text-lg text-white mb-2">2. Serat Optik (Fiber)</h4>
+                        <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                            Menggunakan cahaya untuk membawa sinyal data melalui serat kaca. Kebal terhadap gangguan EMI dan mampu menjangkau puluhan kilometer tanpa penurunan sinyal signifikan.
+                        </p>
+                        <span class="px-2.5 py-1 rounded bg-blue-950 text-blue-400 text-[10px] font-semibold">Kecepatan: > 10 Gbps</span>
+                    </div>
+
+                    <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700">
+                        <div class="text-emerald-400 mb-3"><i data-lucide="wifi" class="w-8 h-8"></i></div>
+                        <h4 class="font-bold text-lg text-white mb-2">3. Nirkabel (Wireless/WLAN)</h4>
+                        <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                            Menggunakan gelombang radio (frekuensi 2.4 GHz & 5 GHz). Praktis dan efisien untuk fleksibilitas perangkat mobilitas tinggi, namun dipengaruhi oleh hambatan fisik.
+                        </p>
+                        <span class="px-2.5 py-1 rounded bg-emerald-950 text-emerald-400 text-[10px] font-semibold">Kecepatan: Beragam (Wi-Fi 4/5/6)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Sub-materi 2 -->
+            <div id="sub-materi-services" class="sub-materi-content hidden space-y-6">
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700">
+                        <div class="text-amber-400 mb-3"><i data-lucide="globe" class="w-8 h-8"></i></div>
+                        <h4 class="font-bold text-lg text-white mb-2">DNS Service</h4>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            <strong>Domain Name System</strong> menerjemahkan nama domain yang mudah diingat manusia (seperti <em>smkn5kolut.sch.id</em>) menjadi alamat IP angka (misal <em>192.168.1.1</em>).
+                        </p>
+                    </div>
+                    <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700">
+                        <div class="text-indigo-400 mb-3"><i data-lucide="network" class="w-8 h-8"></i></div>
+                        <h4 class="font-bold text-lg text-white mb-2">DHCP Service</h4>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            <strong>Dynamic Host Configuration Protocol</strong> memberikan Alamat IP, Subnet Mask, dan Gateway secara otomatis kepada setiap komputer klien yang terhubung ke jaringan.
+                        </p>
+                    </div>
+                    <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700">
+                        <div class="text-rose-400 mb-3"><i data-lucide="lock" class="w-8 h-8"></i></div>
+                        <h4 class="font-bold text-lg text-white mb-2">HTTP / HTTPS</h4>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Protokol transfer dokumen web. <strong>HTTPS</strong> melengkapi komunikasi dengan enkripsi SSL/TLS sehingga data terlindungi dari penyadapan.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Sub-materi 3 -->
+            <div id="sub-materi-keamanan" class="sub-materi-content hidden space-y-6">
+                <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700 space-y-4">
+                    <h4 class="font-bold text-lg text-white flex items-center gap-2">
+                        <i data-lucide="shield" class="w-5 h-5 text-indigo-400"></i> Standar Protokol Keamanan WLAN
+                    </h4>
+                    <div class="grid md:grid-cols-2 gap-4 text-xs">
+                        <div class="p-4 bg-slate-900/60 rounded-xl border border-slate-700">
+                            <h5 class="font-bold text-amber-400 mb-1">WPA2-PSK (AES)</h5>
+                            <p class="text-slate-300">Standar keamanan umum yang menggunakan enkripsi AES. Cukup aman namun rentan terhadap *offline dictionary attack* jika kata sandi terlalu sederhana.</p>
+                        </div>
+                        <div class="p-4 bg-slate-900/60 rounded-xl border border-slate-700">
+                            <h5 class="font-bold text-emerald-400 mb-1">WPA3-SAE</h5>
+                            <p class="text-slate-300">Generasi terbaru keamanan Wi-Fi menggunakan protokol SAE (Simultaneous Authentication of Equals). Melindungi dari serangan tebak kata sandi secara lebih tangguh.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: SIMULASI & KRITIS -->
+        <section id="tab-simulasi" class="tab-content hidden space-y-8">
+            <div class="border-b border-slate-700 pb-4">
+                <h2 class="text-2xl font-bold text-white">Simulasi Interaktif & Analisis Kritis</h2>
+                <p class="text-xs text-slate-400">Gunakan kontrol interaktif untuk menganalisis performa jaringan Wi-Fi sekolah.</p>
+            </div>
+
+            <!-- SIMULASI CONTROL PANEL -->
+            <div class="grid md:grid-cols-12 gap-8">
+                <!-- Control Form -->
+                <div class="md:col-span-5 bg-slate-800 p-6 rounded-2xl border border-slate-700 space-y-6">
+                    <h3 class="font-bold text-base text-indigo-400 flex items-center gap-2">
+                        <i data-lucide="sliders" class="w-5 h-5"></i> Parameter Jaringan
+                    </h3>
+
+                    <!-- Slider Jarak -->
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-xs font-semibold">
+                            <span class="text-slate-300">Jarak Klien ke Router</span>
+                            <span id="val-jarak" class="text-indigo-400">10 meter</span>
+                        </div>
+                        <input type="range" id="input-jarak" min="1" max="50" value="10" class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-indigo-500" oninput="updateSimulasi()">
+                    </div>
+
+                    <!-- Radio Kanal Wi-Fi -->
+                    <div class="space-y-2">
+                        <label class="text-xs font-semibold text-slate-300">Pilihan Kanal Wi-Fi (2.4 GHz)</label>
+                        <select id="input-kanal" onchange="updateSimulasi()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500">
+                            <option value="1">Kanal 1 (Padat / Banyak Interferensi)</option>
+                            <option value="6" selected>Kanal 6 (Sedang)</option>
+                            <option value="11">Kanal 11 (Bersih / Bebas Hambatan)</option>
+                        </select>
+                    </div>
+
+                    <!-- Enkripsi Keamanan -->
+                    <div class="space-y-2">
+                        <label class="text-xs font-semibold text-slate-300">Sistem Keamanan WLAN</label>
+                        <select id="input-enkripsi" onchange="updateSimulasi()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500">
+                            <option value="OPEN">Tanpa Sandi (Open - Tidak Aman)</option>
+                            <option value="WPA2" selected>WPA2-Personal (Standar)</option>
+                            <option value="WPA3">WPA3-Enterprise (Tinggi)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Live Indicator Output -->
+                <div class="md:col-span-7 bg-slate-800 p-6 rounded-2xl border border-slate-700 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-bold text-base text-white mb-4 flex items-center gap-2">
+                            <i data-lucide="activity" class="w-5 h-5 text-indigo-400"></i> Hasil Analisis Performa Real-Time
+                        </h3>
+
+                        <!-- Sinyal Meter -->
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between text-xs mb-1">
+                                    <span class="text-slate-400">Kekuatan Sinyal (RSSI)</span>
+                                    <span id="output-rssi-text" class="font-bold text-emerald-400">-45 dBm (Sangat Baik)</span>
+                                </div>
+                                <div class="w-full bg-slate-900 h-3 rounded-full overflow-hidden p-0.5 border border-slate-700">
+                                    <div id="bar-rssi" class="bg-emerald-500 h-full rounded-full transition-all duration-300" style="width: 85%;"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between text-xs mb-1">
+                                    <span class="text-slate-400">Kecepatan Akses Internet (Throughput)</span>
+                                    <span id="output-speed-text" class="font-bold text-indigo-400">72 Mbps</span>
+                                </div>
+                                <div class="w-full bg-slate-900 h-3 rounded-full overflow-hidden p-0.5 border border-slate-700">
+                                    <div id="bar-speed" class="bg-indigo-500 h-full rounded-full transition-all duration-300" style="width: 75%;"></div>
+                                </div>
+                            </div>
+
+                            <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-700/80 space-y-2 mt-4">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xs text-slate-400">Tingkat Keamanan Sinyal:</span>
+                                    <span id="output-keamanan" class="text-xs font-bold text-emerald-400">Tinggi (Terenkripsi AES)</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xs text-slate-400">Rekomendasi Tindakan:</span>
+                                    <span id="output-rekomendasi" class="text-xs font-medium text-slate-200">Posisi router & frekuensi optimal.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AKTIVITAS BERPIKIR KRITIS (KURIKULUM MERDEKA) -->
+            <div class="bg-slate-800/90 border border-indigo-500/30 rounded-2xl p-6 md:p-8 space-y-4">
+                <div class="flex items-center gap-3">
+                    <div class="p-3 bg-indigo-500/10 text-indigo-400 rounded-xl">
+                        <i data-lucide="help-circle" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg text-white">Studi Kasus Critical Thinking: Lab Komputer SMKN 5 Kolaka Utara</h3>
+                        <p class="text-xs text-slate-400">Selesaikan skenario permasalahan jaringan berikut dengan memilih kombinasi solusi terbaik.</p>
+                    </div>
+                </div>
+
+                <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-700 text-xs text-slate-300 leading-relaxed">
+                    <strong>Permasalahan:</strong> Terdapat 36 unit laptop di Lab Komputer SMKN 5 Kolaka Utara yang terhubung ke satu Access Point Wi-Fi 2.4 GHz. Saat ujian online berlangsung, banyak siswa mengalami koneksi terputus (*lag/request timeout*). Apakah tindakan pemecahan masalah (troubleshooting) terbaik yang harus diambil?
+                </div>
+
+                <!-- Pilihan Solusi -->
+                <div class="grid md:grid-cols-3 gap-4 text-xs">
+                    <button onclick="checkCaseSolution(1)" class="p-4 rounded-xl border border-slate-700 bg-slate-900 hover:border-indigo-500 text-left transition-all space-y-2">
+                        <span class="font-bold text-indigo-400 block">Opsi A</span>
+                        <p class="text-slate-300">Mengubah frekuensi ke 5 GHz / Wi-Fi 6 dan membagi beban ke 2 Access Point terpisah.</p>
+                    </button>
+                    <button onclick="checkCaseSolution(2)" class="p-4 rounded-xl border border-slate-700 bg-slate-900 hover:border-indigo-500 text-left transition-all space-y-2">
+                        <span class="font-bold text-indigo-400 block">Opsi B</span>
+                        <p class="text-slate-300">Mematikan kata sandi Wi-Fi agar semua laptop terhubung tanpa autentikasi.</p>
+                    </button>
+                    <button onclick="checkCaseSolution(3)" class="p-4 rounded-xl border border-slate-700 bg-slate-900 hover:border-indigo-500 text-left transition-all space-y-2">
+                        <span class="font-bold text-indigo-400 block">Opsi C</span>
+                        <p class="text-slate-300">Mendekatkan seluruh 36 laptop hingga berjarak 1 meter dari router.</p>
+                    </button>
+                </div>
+
+                <div id="case-feedback" class="hidden p-4 rounded-xl text-xs font-semibold"></div>
+            </div>
+        </section>
+
+        <!-- TAB 4: KUIS INTERAKTIF -->
+        <section id="tab-kuis" class="tab-content hidden space-y-8">
+            <div class="border-b border-slate-700 pb-4 flex justify-between items-end">
+                <div>
+                    <h2 class="text-2xl font-bold text-white">Kuis Interaktif (10 Soal)</h2>
+                    <p class="text-xs text-slate-400">Uji pengetahuan Anda tentang Media & Jaringan Telekomunikasi.</p>
+                </div>
+                <div id="quiz-score-badge" class="hidden px-4 py-2 bg-indigo-600 rounded-xl font-bold text-xs text-white">
+                    Skor: <span id="score-val">0</span> / 100
+                </div>
+            </div>
+
+            <!-- Quiz Box -->
+            <div id="quiz-container" class="bg-slate-800 p-6 md:p-8 rounded-2xl border border-slate-700 space-y-6">
+                <!-- Header Soal -->
+                <div class="flex justify-between items-center text-xs text-slate-400">
+                    <span id="question-number font-bold text-indigo-400">Soal <span id="current-q">1</span> dari 10</span>
+                    <span class="px-2.5 py-1 bg-slate-900 rounded-md border border-slate-700">Pilihan Ganda</span>
+                </div>
+
+                <!-- Teks Soal -->
+                <h3 id="question-text" class="text-base md:text-lg font-bold text-white leading-relaxed">
+                    Pertanyaan akan muncul di sini...
+                </h3>
+
+                <!-- Pilihan Jawaban -->
+                <div id="options-container" class="grid gap-3">
+                    <!-- Dynamic Buttons -->
+                </div>
+
+                <!-- Navigation Controls -->
+                <div class="flex justify-between items-center pt-4 border-t border-slate-700">
+                    <button onclick="prevQuestion()" id="btn-prev" class="px-4 py-2 rounded-xl bg-slate-700 text-slate-300 font-semibold text-xs disabled:opacity-50" disabled>
+                        Sebelumnya
+                    </button>
+                    <button onclick="nextQuestion()" id="btn-next" class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs">
+                        Selanjutnya
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quiz Result Card (Hidden Initially) -->
+            <div id="quiz-result" class="hidden bg-slate-800 p-8 rounded-2xl border border-slate-700 text-center space-y-6">
+                <div class="w-20 h-20 rounded-full bg-indigo-500/10 text-indigo-400 mx-auto flex items-center justify-center">
+                    <i data-lucide="award" class="w-10 h-10"></i>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold text-white">Hasil Evaluasi Pembelajaran</h3>
+                    <p class="text-xs text-slate-400 mt-1">SMK Negeri 5 Kolaka Utara • Fase E</p>
+                </div>
+                <div class="text-4xl font-extrabold text-indigo-400" id="final-score">0 / 100</div>
+                <p id="result-predikat" class="text-sm font-semibold text-slate-300"></p>
+                <button onclick="restartQuiz()" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-xs font-bold transition-all">
+                    Ulangi Kuis
+                </button>
+            </div>
+        </section>
+
+        <!-- TAB 5: PROFIL -->
+        <section id="tab-profil" class="tab-content hidden space-y-6">
+            <div class="border-b border-slate-700 pb-4">
+                <h2 class="text-2xl font-bold text-white">Profil Sekolah & Pengembang</h2>
+                <p class="text-xs text-slate-400">Informasi institusi dan pengembang Multimedia Pembelajaran Interaktif.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700 space-y-4">
+                    <h3 class="font-bold text-lg text-indigo-400 flex items-center gap-2">
+                        <i data-lucide="school" class="w-5 h-5"></i> Satuan Pendidikan
+                    </h3>
+                    <ul class="text-xs space-y-2.5 text-slate-300">
+                        <li><strong>Sekolah:</strong> SMK Negeri 5 Kolaka Utara</li>
+                        <li><strong>Mata Pelajaran:</strong> Dasar-Dasar Program Keahlian (TJKT)</li>
+                        <li><strong>Fase / Kelas:</strong> Fase E / Kelas X</li>
+                        <li><strong>Materi Pokok:</strong> Media dan Jaringan Telekomunikasi</li>
+                        <li><strong>Kurikulum:</strong> Kurikulum Merdeka</li>
+                    </ul>
+                </div>
+
+                <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700 space-y-4">
+                    <h3 class="font-bold text-lg text-indigo-400 flex items-center gap-2">
+                        <i data-lucide="user-check" class="w-5 h-5"></i> Instructional Designer
+                    </h3>
+                    <ul class="text-xs space-y-2.5 text-slate-300">
+                        <li><strong>Peran:</strong> Pengembang & Guru Mata Pelajaran</li>
+                        <li><strong>Target Pengguna:</strong> Peserta Didik Kelas X SMK Negeri 5 Kolaka Utara</li>
+                        <li><strong>Format Platform:</strong> HTML5 Interaktif (Siap GitHub Pages)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-800/60 border-t border-slate-800 py-4 text-center text-xs text-slate-500">
+        &copy; 2026 SMK Negeri 5 Kolaka Utara. Created for Interactive Learning Experience.
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Init Icons
+        lucide.createIcons();
+
+        // Navigation Tabs Logic
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.getElementById('tab-' + tabId).classList.remove('hidden');
+
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('bg-indigo-600', 'text-white', 'shadow-md');
+                btn.classList.add('text-slate-400');
+            });
+
+            const activeNav = document.getElementById('nav-' + tabId);
+            if(activeNav) {
+                activeNav.classList.add('bg-indigo-600', 'text-white', 'shadow-md');
+                activeNav.classList.remove('text-slate-400');
+            }
+        }
+
+        // Sub Materi Logic
+        function switchSubMateri(subId) {
+            document.querySelectorAll('.sub-materi-content').forEach(el => el.classList.add('hidden'));
+            document.getElementById('sub-materi-' + subId).classList.remove('hidden');
+
+            document.querySelectorAll('.sub-materi-btn').forEach(btn => {
+                btn.classList.remove('bg-indigo-600', 'text-white');
+                btn.classList.add('bg-slate-800', 'text-slate-400');
+            });
+
+            const activeSub = document.getElementById('btn-sub-' + subId);
+            if(activeSub) {
+                activeSub.classList.add('bg-indigo-600', 'text-white');
+                activeSub.classList.remove('bg-slate-800', 'text-slate-400');
+            }
+        }
+
+        // Simulasi Logic
+        function updateSimulasi() {
+            const jarak = parseInt(document.getElementById('input-jarak').value);
+            const kanal = document.getElementById('input-kanal').value;
+            const enkripsi = document.getElementById('input-enkripsi').value;
+
+            document.getElementById('val-jarak').innerText = jarak + " meter";
+
+            // Calculation
+            let rssi = -30 - (jarak * 1.2);
+            let speed = Math.max(5, 100 - (jarak * 1.8));
+
+            if(kanal === "1") speed *= 0.6; // Banyak noise
+            if(kanal === "6") speed *= 0.85;
+
+            const rssiPct = Math.max(10, Math.min(100, 100 + rssi));
+            document.getElementById('bar-rssi').style.width = rssiPct + "%";
+            document.getElementById('output-rssi-text').innerText = Math.round(rssi) + " dBm";
+
+            document.getElementById('bar-speed').style.width = Math.min(100, speed) + "%";
+            document.getElementById('output-speed-text').innerText = Math.round(speed) + " Mbps";
+
+            const secText = document.getElementById('output-keamanan');
+            if(enkripsi === "OPEN") {
+                secText.innerText = "Sangat Rendah (Tanpa Enkripsi)";
+                secText.className = "text-xs font-bold text-rose-400";
+            } else if(enkripsi === "WPA2") {
+                secText.innerText = "Sedang (WPA2-AES)";
+                secText.className = "text-xs font-bold text-amber-400";
+            } else {
+                secText.innerText = "Tinggi (WPA3-SAE)";
+                secText.className = "text-xs font-bold text-emerald-400";
+            }
+        }
+
+        // Critical Thinking Case Check
+        function checkCaseSolution(option) {
+            const fb = document.getElementById('case-feedback');
+            fb.classList.remove('hidden', 'bg-emerald-950', 'text-emerald-300', 'bg-rose-950', 'text-rose-300');
+            
+            if(option === 1) {
+                fb.classList.add('bg-emerald-950', 'text-emerald-300', 'border', 'border-emerald-800');
+                fb.innerHTML = "<strong>Tepat Sekali!</strong> Memindahkan frekuensi ke 5 GHz mengurangi interferensi kanal 2.4 GHz yang padat, dan membagi beban ke 2 Access Point mencegah kelebihan kapasitas koneksi.";
+            } else {
+                fb.classList.add('bg-rose-950', 'text-rose-300', 'border', 'border-rose-800');
+                fb.innerHTML = "<strong>Kurang Tepat.</strong> Solusi ini tidak menyelesaikan masalah kepadatan sinyal / interferensi frekuensi di laboratorium.";
+            }
+        }
+
+        // Kuis Logic (10 Soal)
+        const quizData = [
+            { q: "1. Media transmisi yang memanfaatkan pulsa cahaya melalui serat kaca adalah...", options: ["Kabel UTP", "Kabel Coaxial", "Fiber Optic", "Gelombang Wi-Fi"], answer: 2 },
+            { q: "2. Layanan jaringan yang berfungsi menterjemahkan nama domain menjadi IP address adalah...", options: ["DHCP", "DNS", "FTP", "HTTP"], answer: 1 },
+            { q: "3. Jarak maksimum teoritis transmisi kabel UTP tanpa repeater adalah...", options: ["50 Meter", "100 Meter", "500 Meter", "1000 Meter"], answer: 1 },
+            { q: "4. Protokol keamanan WLAN yang menggunakan enkripsi SAE terbaru adalah...", options: ["WEP", "WPA1", "WPA2-Personal", "WPA3-SAE"], answer: 3 },
+            { q: "5. Layanan jaringan yang memberikan konfigurasi IP address secara otomatis dinamakan...", options: ["DHCP Server", "DNS Server", "Web Server", "Proxy Server"], answer: 0 },
+            { q: "6. Frekuensi gelombang Wi-Fi 2.4 GHz memiliki kelebihan dibandingkan 5 GHz dalam hal...", options: ["Kecepatan transfer data", "Daya jangkauan dan penembusan dinding", "Jumlah kanal tanpa tumpang tindih", "Bebas dari interferensi microwave"], answer: 1 },
+            { q: "7. Jenis konektor yang umumnya digunakan pada kabel jaringan UTP adalah...", options: ["BNC", "FC/PC", "RJ-45", "SMA"], answer: 2 },
+            { q: "8. Dampak dari penggunaan kata kunci Wi-Fi bertipe 'Open' (tanpa enkripsi) adalah...", options: ["Data dapat disadap dengan mudah oleh orang lain", "Kecepatan jaringan meningkat 10 kali lipat", "Sinyal Wi-Fi menjadi 2 kali lebih jauh", "Router terlindung dari serangan malware"], answer: 0 },
+            { q: "9. Protokol web yang menjamin keamanan data melalui enkripsi SSL/TLS adalah...", options: ["HTTP", "FTP", "HTTPS", "SMTP"], answer: 2 },
+            { q: "10. Faktor utama yang memicu lambatnya koneksi pada jaringan nirkabel di ruangan kelas yang padat adalah...", options: ["Terlalu banyak kabel UTP", "Interferensi sinyal & kelebihan kapasitas perangkat terhubung", "Penggunaan alamat IP statis", "Server DNS terlalu dekat"], answer: 1 }
+        ];
+
+        let currentQIndex = 0;
+        let userAnswers = new Array(quizData.length).fill(null);
+
+        function renderQuestion() {
+            const q = quizData[currentQIndex];
+            document.getElementById('current-q').innerText = currentQIndex + 1;
+            document.getElementById('question-text').innerText = q.q;
+
+            const optContainer = document.getElementById('options-container');
+            optContainer.innerHTML = '';
+
+            q.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = `w-full text-left p-4 rounded-xl border text-xs font-semibold transition-all ${userAnswers[currentQIndex] === idx ? 'bg-indigo-600 border-indigo-400 text-white' : 'bg-slate-900 border-slate-700 text-slate-300 hover:border-slate-500'}`;
+                btn.innerText = `${String.fromCharCode(65 + idx)}. ${opt}`;
+                btn.onclick = () => {
+                    userAnswers[currentQIndex] = idx;
+                    renderQuestion();
+                };
+                optContainer.appendChild(btn);
+            });
+
+            document.getElementById('btn-prev').disabled = currentQIndex === 0;
+            if(currentQIndex === quizData.length - 1) {
+                document.getElementById('btn-next').innerText = "Selesai & Lihat Hasil";
+            } else {
+                document.getElementById('btn-next').innerText = "Selanjutnya";
+            }
+        }
+
+        function prevQuestion() {
+            if(currentQIndex > 0) {
+                currentQIndex--;
+                renderQuestion();
+            }
+        }
+
+        function nextQuestion() {
+            if(currentQIndex < quizData.length - 1) {
+                currentQIndex++;
+                renderQuestion();
+            } else {
+                finishQuiz();
+            }
+        }
+
+        function finishQuiz() {
+            let score = 0;
+            userAnswers.forEach((ans, idx) => {
+                if(ans === quizData[idx].answer) score += 10;
+            });
+
+            document.getElementById('quiz-container').classList.add('hidden');
+            const resCard = document.getElementById('quiz-result');
+            resCard.classList.remove('hidden');
+
+            document.getElementById('final-score').innerText = score + " / 100";
+            
+            const predikat = document.getElementById('result-predikat');
+            if(score >= 80) {
+                predikat.innerText = "Predikat: Sangat Baik (Kompeten)";
+                confetti();
+            } else if(score >= 70) {
+                predikat.innerText = "Predikat: Baik (Cukup Kompeten)";
+            } else {
+                predikat.innerText = "Predikat: Perlu Bimbingan Ulang";
+            }
+        }
+
+        function restartQuiz() {
+            currentQIndex = 0;
+            userAnswers.fill(null);
+            document.getElementById('quiz-result').classList.add('hidden');
+            document.getElementById('quiz-container').classList.remove('hidden');
+            renderQuestion();
+        }
+
+        // Initialize quiz on load
+        renderQuestion();
+        updateSimulasi();
+    </script>
+</body>
+</html>
